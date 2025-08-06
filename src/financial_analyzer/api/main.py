@@ -3,8 +3,8 @@ from __future__ import annotations
 
 from fastapi import FastAPI
 
-from financial_analyzer.api.endpoints.analysis import router as analysis_router
-from financial_analyzer.config.settings import settings
+from src.financial_analyzer.api.endpoints.analysis import router as analysis_router
+from src.financial_analyzer.config.settings import settings
 
 app = FastAPI(title=settings.PROJECT_NAME)
 app.include_router(analysis_router)
