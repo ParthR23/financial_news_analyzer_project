@@ -12,14 +12,14 @@ from typing import Any, Dict, List, Sequence, Tuple
 import chromadb  # type: ignore
 from sentence_transformers import SentenceTransformer  # type: ignore
 
-from financial_analyzer.config.settings import settings
+from src.financial_analyzer.config import settings
 
 
 class VectorDB:
     """Interface for adding and retrieving documents from ChromaDB."""
 
     _DEFAULT_COLLECTION_NAME = "financial_news"
-    _EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
+    _EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 
     def __init__(self, collection_name: str | None = None) -> None:
         collection_name = collection_name or self._DEFAULT_COLLECTION_NAME
