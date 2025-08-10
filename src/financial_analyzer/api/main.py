@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from fastapi import FastAPI
 
+# NEW
 from src.financial_analyzer.api.endpoints.analysis import router as analysis_router
 from src.financial_analyzer.config.settings import settings
 

@@ -1,5 +1,3 @@
-# FILE: src/financial_analyzer/ingestion/scraper.py
-
 import boto3
 import feedparser
 import requests
@@ -62,7 +60,10 @@ class NewsScraper:
         logging.info("Starting scrape and save process...")
         for feed_url in self.feed_urls:
             feed = feedparser.parse(feed_url)
-            logging.info(f"Processing feed: {feed.feed.title}")
+
+            # --- FIX: Check if the feed title exists before logging ---
+            feed_title = getattr(feed.feed, 'title', f"Unknown Title for URL: {feed_url}")
+            logging.info(f"Processing feed: {feed_title}")
 
             for entry in feed.entries:
                 article_url = entry.link
@@ -77,7 +78,7 @@ class NewsScraper:
                     "title": entry.title,
                     "link": entry.link,
                     "published": entry.get("published", "N/A"),
-                    "source": feed.feed.title,
+                    "source": feed_title,  # Use the safe feed_title variable
                     "content": content
                 }
 
