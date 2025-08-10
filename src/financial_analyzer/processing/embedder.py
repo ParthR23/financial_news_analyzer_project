@@ -1,128 +1,79 @@
-"""financial_analyzer.processing.embedder
-
-PySpark job to transform raw article JSON files stored in S3 into dense vector
-embeddings and persist them into ChromaDB via the project's ``VectorDB``
-wrapper.
-
-Execution environment requirements:
-    - PySpark (Spark 3.x)
-    - sentence-transformers
-    - boto3 (implicit via Spark's S3 client when using Hadoop AWS module)
-    - chromadb (or whichever backend is used by the VectorDB abstraction)
-
-The job can be submitted either with ``spark-submit`` or executed locally with
-``python -m financial_analyzer.processing.embedder`` provided the necessary
-Spark & AWS environment variables are configured.
-"""
-from __future__ import annotations
-
-import json
-import os
-from typing import List
-
+import logging
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, udf
+from pyspark.sql.functions import udf
 from pyspark.sql.types import ArrayType, FloatType
-
 from sentence_transformers import SentenceTransformer
+import json
 
-try:
-    # Attempt to use the project's VectorDB abstraction.
-    from financial_analyzer.core.vector_db import VectorDB  # type: ignore
-except ImportError:  # pragma: no cover
-    # Fallback stub so that the script can still be imported for docs/tests if
-    # the full core module hierarchy is not present.
-    class VectorDB:  # type: ignore
-        def __init__(self, collection_name: str):
-            from chromadb import Client  # type: ignore
+from ..config import settings
+from ..core.vector_db import VectorDB
 
-            self._client = Client()
-            self._collection = self._client.get_or_create_collection(collection_name)
+# --- Setup basic logging ---
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-        def add_document(self, doc_id: str, metadata: dict, embedding: List[float]):  # noqa: D401,E501
-            self._collection.add(documents=[metadata.get("content", "")], ids=[doc_id], metadatas=[metadata], embeddings=[embedding])
+def get_embedding(text: str) -> list[float]:
+    """Generates a vector embedding for a given text."""
+    # This function will be broadcast to each Spark executor.
+    # We initialize the model inside the function to avoid serialization issues.
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+    embedding = model.encode(text)
+    return embedding.tolist()
 
+def run_embedding_job():
+    """
+    Main PySpark job to read raw data from S3, generate embeddings,
+    and load them into a vector database.
+    """
+    logging.info("Starting PySpark embedding job...")
 
-try:
-    from settings import S3_BUCKET_NAME  # type: ignore
-except ImportError:  # pragma: no cover
-    S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "")
-
-S3_PREFIX = os.getenv("RAW_ARTICLE_PREFIX", "raw_articles")
-MODEL_NAME = os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
-COLLECTION_NAME = os.getenv("CHROMA_COLLECTION", "financial_news")
-
-
-# ---------------------------------------------------------------------------
-# Spark UDF for embeddings
-# ---------------------------------------------------------------------------
-
-def _make_embed_udf(model_name: str):
-    """Return a Spark UDF that embeds text using *model_name*."""
-
-    # The model variable will be lazily initialised inside executors. Spark will
-    # serialise this closure and ship it to worker nodes.
-    def _embed(text: str | None):  # type: ignore
-        # Lazy load to avoid re-initialising on every row.
-        if not hasattr(_embed, "_model"):
-            _embed._model = SentenceTransformer(model_name)  # type: ignore[attr-defined]
-        if text is None:
-            return None
-        # SentenceTransformer returns numpy array; convert to list of floats
-        vec = _embed._model.encode(text)  # type: ignore[attr-defined]
-        return vec.tolist()
-
-    return udf(_embed, ArrayType(FloatType()))
-
-
-# ---------------------------------------------------------------------------
-# Main job logic
-# ---------------------------------------------------------------------------
-
-def run_job():
-    """Execute the embedding pipeline."""
-    if not S3_BUCKET_NAME:
-        raise RuntimeError("S3_BUCKET_NAME must be configured via settings or env var.")
-
-    spark = (
-        SparkSession.builder.appName("financial_news_embedder")
-        # Typical Hadoop AWS settings can be passed via spark-submit --conf, so we keep builder minimal.
+    spark = SparkSession.builder \
+        .appName("FinancialNewsEmbedder") \
+        .config("spark.hadoop.fs.s3a.access.key", settings.AWS_ACCESS_KEY_ID) \
+        .config("spark.hadoop.fs.s3a.secret.key", settings.AWS_SECRET_ACCESS_KEY) \
+        .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
         .getOrCreate()
-    )
 
-    s3_uri = f"s3a://{S3_BUCKET_NAME}/{S3_PREFIX}/*.json"
-    df = spark.read.json(s3_uri)
+    logging.info("Spark session created.")
 
-    embed_udf = _make_embed_udf(MODEL_NAME)
-    df_with_embeddings = df.withColumn("embedding", embed_udf(col("content")))
+    # 1. Read raw JSON data from S3
+    s3_path = f"s3a://{settings.S3_BUCKET_NAME}/raw_news/"
+    raw_df = spark.read.json(s3_path)
+    logging.info(f"Successfully read {raw_df.count()} articles from S3.")
 
-    # Collect small-ish dataset to driver; for very large sets this should be
-    # batched/streamed instead.
-    results = (
-        df_with_embeddings.select("url", "title", "published", "content", "embedding")
-        .where(col("embedding").isNotNull())
-        .collect()
-    )
+    # 2. Define and apply the UDF to generate embeddings
+    embedding_udf = udf(get_embedding, ArrayType(FloatType()))
+    processed_df = raw_df.withColumn("embedding", embedding_udf(raw_df["content"]))
+    
+    # 3. Collect the processed data to the driver
+    logging.info("Generating embeddings... This may take a while.")
+    results = processed_df.select("title", "link", "published", "source", "content", "embedding").collect()
+    logging.info(f"Successfully generated embeddings for {len(results)} articles.")
 
-    vectordb = VectorDB(collection_name=COLLECTION_NAME)
+    # 4. Load data into the vector database
+    vector_db = VectorDB()
+    documents = []
+    metadatas = []
+    ids = []
 
     for row in results:
-        vectordb.add_document(
-            doc_id=row["url"],
-            metadata={
-                "title": row["title"],
-                "published": row["published"],
-                "content": row["content"],
-            },
-            embedding=row["embedding"],
-        )
+        documents.append(row['content'])
+        metadatas.append({
+            "title": row['title'],
+            "link": row['link'],
+            "published": row['published'],
+            "source": row['source']
+        })
+        # Create a unique ID for each document
+        ids.append(hashlib.md5(row['link'].encode()).hexdigest())
+
+    if documents:
+        vector_db.add_documents(documents=documents, metadatas=metadatas, ids=ids)
+        logging.info(f"Successfully added {len(documents)} documents to the vector database.")
+    else:
+        logging.warning("No new documents to add to the vector database.")
 
     spark.stop()
+    logging.info("PySpark job finished.")
 
-
-# ---------------------------------------------------------------------------
-# Entry point
-# ---------------------------------------------------------------------------
-if __name__ == "__main__":  # pragma: no cover
-    run_job()
-
+if __name__ == "__main__":
+    run_embedding_job()

@@ -1,49 +1,136 @@
------BEGIN OPENSSH PRIVATE KEY-----
-b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
-NhAAAAAwEAAQAAAgEA02sM95QC3nWoE+k9HeFYdpVj6bhyImkpi1mbux0rGUS5s7WZh8Bw
-mPI6ZHHpcMv9t/xJ9H6pEqlt/W0XKRkFFI2fFqWrF1WFX1OsjJICM19y1JFluE+xgcoKym
-XKfP7X3dSnpqCuqq4S6lH/Dufi2j15zLqURUIwxNeWnxozKs7iLUG3Ag/IUXIkABazLJ/b
-I9HQnWL/5xaVGjFxxvwdbDF9cYiQUT/RsZfwG8El89mYVsBpmxFJkKyia3SwG9EBE2z7BE
-xyNp6QWvZSLNgVbgMuGVKAAzk3VlFWB+KBc+/lSuSo8N5HNepNEsoaPPSWNiVThFCHq9so
-B1Coc1DAsV1L8ZpV8eHJgTjKzi3SPrFC+axdIgc5mUZDp6DBbB6z+G8V+V6wheRUZN665A
-/3YmeCRyJ/gUNfiDuaX+ArVFaGcYE2+vH3b0KfLoJpI6nk09SFUZNHbSTUYmpdxMTpqCPV
-35kTXFoy0kGGjxVIVo0tLJnjtnhGvnrVJrvL2dK9F5UKGmPmxr77MrPWpU/o85QZ8b/eKO
-ZV0paAtAffeLuE2yc1hen1uB6pR7u/gw+mu7FwyBz7v/zvY9T9zoswjRxFAN3FELN9ZZlO
-+lzZ398vX6aYwte2Cztan8RWJDpj0CbQNQBxU0W2zWsqh6iup4rfuaazSAil52BfZWn/f2
-kAAAdQ3ZBdBN2QXQQAAAAHc3NoLXJzYQAAAgEA02sM95QC3nWoE+k9HeFYdpVj6bhyImkp
-i1mbux0rGUS5s7WZh8BwmPI6ZHHpcMv9t/xJ9H6pEqlt/W0XKRkFFI2fFqWrF1WFX1OsjJ
-ICM19y1JFluE+xgcoKymXKfP7X3dSnpqCuqq4S6lH/Dufi2j15zLqURUIwxNeWnxozKs7i
-LUG3Ag/IUXIkABazLJ/bI9HQnWL/5xaVGjFxxvwdbDF9cYiQUT/RsZfwG8El89mYVsBpmx
-FJkKyia3SwG9EBE2z7BExyNp6QWvZSLNgVbgMuGVKAAzk3VlFWB+KBc+/lSuSo8N5HNepN
-EsoaPPSWNiVThFCHq9soB1Coc1DAsV1L8ZpV8eHJgTjKzi3SPrFC+axdIgc5mUZDp6DBbB
-6z+G8V+V6wheRUZN665A/3YmeCRyJ/gUNfiDuaX+ArVFaGcYE2+vH3b0KfLoJpI6nk09SF
-UZNHbSTUYmpdxMTpqCPV35kTXFoy0kGGjxVIVo0tLJnjtnhGvnrVJrvL2dK9F5UKGmPmxr
-77MrPWpU/o85QZ8b/eKOZV0paAtAffeLuE2yc1hen1uB6pR7u/gw+mu7FwyBz7v/zvY9T9
-zoswjRxFAN3FELN9ZZlO+lzZ398vX6aYwte2Cztan8RWJDpj0CbQNQBxU0W2zWsqh6iup4
-rfuaazSAil52BfZWn/f2kAAAADAQABAAACAQCJR5rM7DwMrYNtImdADsI9hfWxnsXl2DlU
-tePsVR1WNA0NRx8hSfETLz6BWIJHbv4ZyOVQsCoi5wd3pq2CTy/AT9F8iCiXZz3KT2/cez
-aYmyLaKmtNidnuN/5XvE8GaQhMj7go929TfuLjakjfKe1g3shHCuQaMMewGXlBaGbPJjUx
-Q9mMqijd0erUb+j6UfaexK/ccptON5irwG1r0utcBKq63P0w9Oq5kbokm3+EXsePlTM9sL
-T/D0oL0mJEPaugLIS2HtmO49lCZ22mls0beU8mvC5JaY6oKvpc9lQurxhJUD7u4LaGqNRR
-HhB5gixDjmszoILoMc9FKLeo4Ues9D9fT5XksN+NSJs//D413Cq6zbbjBowhObkahe0Q/E
-KiYducdOpZ8iflKNQMAu42OFRFuTKH5cVQeMqhdXRwWVkLLY4VUG5KRoclKogbx82lkhia
-hwDy7T1sNW6Ga/2PdMxPhkZ+1VPko5C/J/7AfUKidUVwrIYzhZXMw3JRx1nvvLzjV2cxfc
-n6rnclzzEGwMt9yBm+/nMJVvC2XrBwWyBeiRXQzUds+oQMJWT3XmzOpkYALlYnEG2BVcQi
-lhLMxxXOYzSSw+MmNC4mCnhCkZTFoG2T+7lPmk99GmmDI7H38ut7jp3DVGjxEu9t6StPhG
-3UffV13I1i5hjYMVxOrQAAAQEA66DB6Y4kLTRXgrIauOBlENTgitS1jPva2s9xE3rWZ8yc
-YBhAvzkUDmCS8bthN9n3ROGg17qrhyXRQ/1XEH6L+DgRv0LbuOKMn5gRKbBXwBb2IA5GS7
-Fv+GXwCvZwRXt5c+TqZY3h0T+jMceV73rn4kLkj8Y5gk/kWikG50hxZxZVPvJkGJx6D//n
-oQQ7LJ73xOSuFJsUMnSOUx0Adqm3pXqr5JxKZ7W+EWwAacOdcVMXmyHzUHfwRamIfdWb2c
-KY04TqZRymjqFEq7zouXBYj90i+pZKjxghSpwBiodJsA6T+w/zLy3QZ3tLauEDzTrrYjOj
-Tm1girGxwqUzNkLwBAAAAQEA/3OMbRDBnHHJydSdcBzSi37dc8tuoZ+GCKGE6tW6g36El0
-1TsxucULTKHTdkb1cVnHee2pgwtCy/wFe0A5FnTvLN3G87OFFhsZpzBEswlggZMP8Czl7h
-pg2EDx0f8kGGqDHuQXkOjGvKVxrc6WtPlhpWauVWejkxhGWFJVKuJMrr+gvXxo9ePIhfLj
-SSNIuBLP51AxlkrYjwgs0/WOuE7ag3CfSyG8iFi0+f4IGExVyplwNUu+ExQke+N4FjRXjQ
-3FcjVE+osSi+l+JLAE/Yk5t1SMWhBE+nkMy4R4xPT5666OdbNFBvXobwIyiX196o7WqErg
-ibvVah4f+NIfUeUwAAAQEA099Ku1xlSHOJ1UlJz8v+Lvdy4xr2rKKEQN+0i0urY9qtVRkI
-nTF0dxFTAf7Eo+QxWJbRXyD7JWFRyMEv29HhJ+KJ3+hOkmwfhko1xtDLtH+Bv9oLCMTlYZ
-9XqjFVq65M3cnmcCo3yYm7DkjDpIJ7OCUoAqJYsIK/xFKubITesSRde+NW2xiJ0BW8XV7p
-yF9wPPi8og/CGN5appGueWhvWJk/rDQIVZPazNrEg0Rp3g2R5rZYxQd9wVW+du8t5HcBwB
-Q8qfGhr28px6QmGj/364EaXvXh8uP/AEQeYC4J5X/ZlA72skhtESg9UT6mCn8Bqqd/v5JQ
-/LTZwTkPQhBb0wAAABVwcmFtYmhvcmthckBnbWFpbC5jb20BAgME
------END OPENSSH PRIVATE KEY-----
+# --- Stage 1: Build Stage ---
+# Use a specific Python version for reproducibility
+FROM python:3.10-slim-buster AS builder
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set work directory
+WORKDIR /app
+
+# Install dependencies
+# Copy only requirements to leverage Docker layer caching
+COPY requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt
+
+
+# --- Stage 2: Final Stage ---
+FROM python:3.10-slim-buster
+
+# Create a non-root user for security
+RUN useradd --create-home appuser
+WORKDIR /home/appuser
+
+# Install dependencies from the wheels built in the previous stage
+COPY --from=builder /app/wheels /wheels
+COPY requirements.txt .
+RUN pip install --no-cache /wheels/*
+
+# Copy the application source code
+COPY ./src .
+
+# Change ownership of the directory to the non-root user
+RUN chown -R appuser:appuser /home/appuser
+
+# Switch to the non-root user
+USER appuser
+
+# Expose the port the app runs on
+EXPOSE 8000
+
+# Command to run the application
+CMD ["uvicorn", "financial_analyzer.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+```markdown
+# FILE: README.md
+
+# Real-Time Financial News Analysis & Summarization Service
+
+This project is an end-to-end AI service that ingests financial news articles in real-time, performs sentiment analysis, and provides AI-generated summaries on demand through a REST API.
+
+## 🚀 Features
+
+-   **Real-Time Data Ingestion**: Scrapes news articles from multiple financial RSS feeds.
+-   **AI-Powered Summarization**: Uses a Retrieval-Augmented Generation (RAG) system to provide concise summaries of news related to a specific query.
+-   **Sentiment Analysis**: Provides sentiment scores for any given text.
+-   **Scalable Architecture**: Built with a modular, microservice-oriented design and containerized with Docker for easy deployment.
+-   **Cloud-Native**: Designed to leverage cloud services like AWS S3 for storage and can be deployed on any modern cloud platform.
+
+## 🏛️ Architecture
+
+The project follows a standard data engineering and MLOps workflow:
+
+1.  **Ingestion**: A Python script (`scraper.py`) periodically scrapes RSS feeds and stores raw articles as JSON files in an AWS S3 bucket.
+2.  **Processing & Embedding**: A PySpark job (`embedder.py`) reads the raw data from S3, processes it, generates vector embeddings for the article content using Sentence-Transformers, and loads the data into a ChromaDB vector store.
+3.  **API Service**: A FastAPI application serves the AI models through a REST API. It exposes endpoints for summarization and sentiment analysis.
+4.  **RAG Logic**: When a user queries the `/summarize` endpoint, the API retrieves the most relevant articles from the vector database and feeds them as context to a Large Language Model (LLM) to generate a high-quality summary.
+5.  **Deployment**: The entire application is containerized using Docker, making it portable and easy to deploy on services like Google Cloud Run or AWS ECS.
+
+## 🛠️ Tech Stack
+
+-   **Backend**: FastAPI, Python 3.10
+-   **Data Processing**: Apache Spark (PySpark)
+-   **AI / ML**: Hugging Face Transformers, Sentence-Transformers, LangChain
+-   **Database**: ChromaDB (Vector Store)
+-   **Cloud**: AWS S3
+-   **Deployment**: Docker
+
+## ⚙️ Setup and Installation
+
+### Prerequisites
+
+-   Python 3.10+
+-   Docker
+-   AWS Account and credentials configured
+
+### Local Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/ParthR23/financial_news_analyzer_project.git](https://github.com/ParthR23/financial_news_analyzer_project.git)
+    cd financial_news_analyzer_project
+    ```
+
+2.  **Create a virtual environment and install dependencies:**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+    ```
+
+3.  **Set up environment variables:**
+    Create a `.env` file in the root directory and add your credentials:
+    ```
+    AWS_ACCESS_KEY_ID=your_aws_access_key
+    AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+    S3_BUCKET_NAME=your_s3_bucket_name
+    LLM_API_KEY=your_llm_api_key
+    ```
+
+4.  **Run the application:**
+    ```bash
+    uvicorn financial_analyzer.api.main:app --reload
+    ```
+    The API will be available at `http://127.0.0.1:8000`.
+
+## 🐳 Running with Docker
+
+1.  **Build the Docker image:**
+    ```bash
+    docker build -t financial-analyzer .
+    ```
+
+2.  **Run the Docker container:**
+    ```bash
+    docker run -p 8000:8000 --env-file .env financial-analyzer
+    ```
+
+##  API Endpoints
+
+-   `POST /summarize`: Get a summary of news related to a query.
+    -   **Body**: `{"query": "What is the latest news on Tesla?"}`
+-   `POST /sentiment`: Get the sentiment of a piece of text.
+    -   **Body**: `{"query": "The stock market saw significant gains today."}`
+
+Access the interactive API documentation at `http://127.0.0.1:8000/docs`.
