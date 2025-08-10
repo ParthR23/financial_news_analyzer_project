@@ -1,3 +1,5 @@
+# FILE: src/financial_analyzer/ingestion/scraper.py
+
 import boto3
 import feedparser
 import requests
@@ -5,16 +7,30 @@ from bs4 import BeautifulSoup
 import json
 import hashlib
 import logging
-from ..config import settings
+
+# Conditional import for running as a script vs. as a module
+if __name__ == "__main__" and __package__ is None:
+    # Add src to path to allow absolute imports
+    import sys
+    from pathlib import Path
+
+    file = Path(__file__).resolve()
+    parent, root = file.parent, file.parents[2]
+    sys.path.append(str(root))
+    from src.financial_analyzer.config import settings
+else:
+    from ..config import settings
 
 # --- Setup basic logging ---
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 class NewsScraper:
     """
     Scrapes financial news articles from a list of RSS feeds,
     parses their content, and saves them to an AWS S3 bucket.
     """
+
     def __init__(self, feed_urls: list[str], bucket_name: str):
         self.feed_urls = feed_urls
         self.bucket_name = bucket_name
@@ -76,11 +92,12 @@ class NewsScraper:
                 except Exception as e:
                     logging.error(f"Failed to upload article to S3: {e}")
 
+
 if __name__ == "__main__":
     # Example RSS feeds (replace with your preferred sources)
     RSS_FEEDS = [
         "http://feeds.reuters.com/reuters/businessNews",
-        "https://feeds.a.dj.com/rss/RSSMarketsMain.xml", # Wall Street Journal
+        "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",  # Wall Street Journal
     ]
 
     scraper = NewsScraper(feed_urls=RSS_FEEDS, bucket_name=settings.S3_BUCKET_NAME)
